@@ -13,16 +13,6 @@ class App extends React.Component {
     showPersons: false,
   };
 
-  switchNameHandler = (newName) => {
-    this.setState({
-      persons: [
-        { name: newName, age: 28 },
-        { name: "Manu", age: 29 },
-        { name: "Stephanie", age: 27 },
-      ],
-    });
-  };
-
   nameChangeHandler = (e) => {
     this.setState({
       persons: [
@@ -38,6 +28,12 @@ class App extends React.Component {
     this.setState({ showPersons: !doesShow });
   };
 
+  deletePersonsHandler = (personIndex) => {
+    const persons = this.state.persons;
+    persons.splice(personIndex, 1);
+    this.setState({ persons: persons });
+  };
+
   render() {
     const style = {
       backgroundColor: "white",
@@ -48,6 +44,23 @@ class App extends React.Component {
       cursor: "pointer",
     };
 
+    let persons = null;
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+          {this.state.persons.map((person, index) => {
+            return (
+              <Person
+                name={person.name}
+                age={person.age}
+                click={() => this.deletePersonsHandler(index)}
+              />
+            );
+          })}
+        </div>
+      );
+    }
+
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
@@ -55,26 +68,7 @@ class App extends React.Component {
         <button style={style} onClick={this.togglePersonsHandler}>
           Click Here
         </button>
-        {this.state.showPersons && (
-          <div>
-            <Person
-              name={this.state.persons[0].name}
-              age={this.state.persons[0].age}
-              click={() => this.switchNameHandler("Paul")}
-            />
-            <Person
-              name={this.state.persons[1].name}
-              age={this.state.persons[1].age}
-              changed={this.nameChangeHandler}
-            >
-              My hobbie: Racing
-            </Person>
-            <Person
-              name={this.state.persons[2].name}
-              age={this.state.persons[2].age}
-            />
-          </div>
-        )}
+        {persons}
       </div>
     );
   }
