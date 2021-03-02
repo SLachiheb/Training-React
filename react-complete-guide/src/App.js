@@ -6,11 +6,11 @@ import Person from "./Person/Person";
 class App extends React.Component {
   state = {
     persons: [
-      { name: "Max", age: 28 },
-      { name: "Manu", age: 29 },
-      { name: "Stephanie", age: 26 },
+      { id: "iugzef", name: "Max", age: 28 },
+      { id: "lzjdad", name: "Manu", age: 29 },
+      { id: "ldlzje", name: "Stephanie", age: 26 },
     ],
-    showPersons: false,
+    showPerson: false,
   };
 
   nameChangeHandler = (e) => {
@@ -55,6 +55,7 @@ class App extends React.Component {
                 name={person.name}
                 age={person.age}
                 click={() => this.deletePersonsHandler(index)}
+                key={person.id}
               />
             );
           })}
