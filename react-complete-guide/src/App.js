@@ -1,20 +1,20 @@
-import "./App.css";
+import './App.css';
 // import "./Person/Person.css";
-import React from "react";
-import Person from "./Person/Person";
+import React from 'react';
+import Person from './Person/Person';
 
 class App extends React.Component {
   state = {
     persons: [
-      { id: "iugzef", name: "Max", age: 28 },
-      { id: "lzjdad", name: "Manu", age: 29 },
-      { id: "ldlzje", name: "Stephanie", age: 26 },
+      { id: 'iugzef', name: 'Max', age: 28 },
+      { id: 'lzjdad', name: 'Manu', age: 29 },
+      { id: 'ldlzje', name: 'Stephanie', age: 26 },
     ],
     showPerson: false,
   };
 
   nameChangeHandler = (e, id) => {
-    const personId = this.state.persons.findIndex((person) => person.id === id);
+    const personId = this.state.persons.findIndex(person => person.id === id);
     const person = {
       ...this.state.persons[personId],
     };
@@ -31,7 +31,7 @@ class App extends React.Component {
     this.setState({ showPersons: !doesShow });
   };
 
-  deletePersonsHandler = (personIndex) => {
+  deletePersonsHandler = personIndex => {
     // const persons = this.state.persons.slice();
     const persons = [...this.state.persons];
     persons.splice(personIndex, 1);
@@ -40,12 +40,12 @@ class App extends React.Component {
 
   render() {
     const style = {
-      backgroundColor: "white",
-      font: "inherite",
-      border: "3px solid blue",
-      borderRadius: "40px",
-      padding: "8px",
-      cursor: "pointer",
+      backgroundColor: 'green',
+      color: 'white',
+      font: 'inherite',
+      borderRadius: '40px',
+      padding: '8px',
+      cursor: 'pointer',
     };
 
     let persons = null;
@@ -59,12 +59,14 @@ class App extends React.Component {
                 age={person.age}
                 click={() => this.deletePersonsHandler(index)}
                 key={person.id}
-                changed={(e) => this.nameChangeHandler(e, person.id)}
+                changed={e => this.nameChangeHandler(e, person.id)}
               />
             );
           })}
         </div>
       );
+
+      style.backgroundColor = 'red';
     }
 
     return (
