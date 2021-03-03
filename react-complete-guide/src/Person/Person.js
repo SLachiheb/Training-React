@@ -1,5 +1,4 @@
 import React from 'react';
-// import './Person.css';
 import styled from 'styled-components';
 
 const StyleDiv = styled.div`
@@ -28,11 +27,3 @@ const person = props => {
 };
 
 export default person;
-
-// <div className="Person" style={style}>
-//   <p onClick={props.click}>
-//     I'm a {props.name} and I am {props.age} years old!
-//   </p>
-//   <p>{props.children}</p>
-//   <input type="text" onChange={props.changed}></input>
-// </div>
