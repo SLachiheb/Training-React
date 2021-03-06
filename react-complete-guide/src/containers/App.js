@@ -20,6 +20,7 @@ class App extends React.Component {
     ],
     showPerson: false,
     showCockpit: true,
+    changeCounter: 0,
   };
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -43,8 +44,11 @@ class App extends React.Component {
     person.name = e.target.value;
     const persons = [...this.state.persons];
     persons[personId] = person;
-    this.setState({
-      persons: persons,
+    this.setState((prevState, props) => {
+      return {
+        persons: persons,
+        changeCounter: prevState.changeCounter + 1,
+      };
     });
   };
 
