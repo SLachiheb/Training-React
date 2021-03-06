@@ -3,6 +3,7 @@ import React from 'react';
 import style from './App.module.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cokpit/Cockpit';
+import Example1 from '../components/ExampleReact/Example1';
 
 class App extends React.Component {
   constructor(props) {
@@ -17,12 +18,8 @@ class App extends React.Component {
       { id: 'ldlzje', name: 'Stephanie', age: 26 },
     ],
     showPerson: false,
+    showCockpit: true,
   };
-
-  static getDerivedStateFromProps(props, state) {
-    console.log('[App.js] getDerivedStateFromProps', props);
-    return state;
-  }
 
   shouldComponentUpdate(nextProps, nextState) {
     console.log('[App.js] shouldComponentUpdate...');
@@ -78,12 +75,22 @@ class App extends React.Component {
 
     return (
       <div className={style.App}>
-        <Cockpit
-          title={this.props.appTitle}
-          showPersons={this.state.showPersons}
-          persons={this.state.persons}
-          clicked={this.togglePersonsHandler}
-        />
+        <Example1 />
+        <button
+          onClick={() => {
+            this.setState({ showCockpit: false });
+          }}
+        >
+          Remove Cockpit
+        </button>
+        {this.state.showCockpit ? (
+          <Cockpit
+            title={this.props.appTitle}
+            showPersons={this.state.showPersons}
+            personsLength={this.state.persons.length}
+            clicked={this.togglePersonsHandler}
+          />
+        ) : null}
         {persons}
       </div>
     );
