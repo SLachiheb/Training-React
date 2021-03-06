@@ -4,6 +4,7 @@ import style from './App.module.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cokpit/Cockpit';
 import Example1 from '../components/ExampleReact/Example1';
+import WithClass from './../components/hoc/WithClass';
 
 class App extends React.Component {
   constructor(props) {
@@ -74,7 +75,7 @@ class App extends React.Component {
     }
 
     return (
-      <div className={style.App}>
+      <WithClass classes={style.App}>
         <Example1 />
         <button
           onClick={() => {
@@ -92,7 +93,7 @@ class App extends React.Component {
           />
         ) : null}
         {persons}
-      </div>
+      </WithClass>
     );
   }
 }
