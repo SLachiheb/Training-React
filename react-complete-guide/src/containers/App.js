@@ -4,7 +4,7 @@ import style from './App.module.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cokpit/Cockpit';
 import Example1 from '../components/ExampleReact/Example1';
-import WithClass from './../components/hoc/WithClass';
+import withClass from '../components/hoc/withClass';
 
 class App extends React.Component {
   constructor(props) {
@@ -75,7 +75,7 @@ class App extends React.Component {
     }
 
     return (
-      <WithClass classes={style.App}>
+      <React.Fragment>
         <Example1 />
         <button
           onClick={() => {
@@ -93,9 +93,9 @@ class App extends React.Component {
           />
         ) : null}
         {persons}
-      </WithClass>
+      </React.Fragment>
     );
   }
 }
 
-export default App;
+export default withClass(App, style.App);
