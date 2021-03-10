@@ -1,14 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import style from './Cockpit.module.css';
 
 const Cockpit = props => {
+  const toggleBtnRef = useRef(null);
+
   useEffect(() => {
     console.log('[Cockpit.js] useEffect');
     // http request...
-    setTimeout(() => {
-      alert('Change of attribute props.persons !');
-    }, 1000);
+    // setTimeout(() => {
+    //   alert('Change of attribute props.persons !');
+    // }, 1000);
+
+    toggleBtnRef.current.click();
 
     return () => {
       // clearTimeout(timer);
@@ -42,7 +46,7 @@ const Cockpit = props => {
     <div className={style.Cockpit}>
       <h1>{props.title}</h1>
       <p className={classes.join(' ')}>This is really working!</p>
-      <button className={btnClass} onClick={props.clicked}>
+      <button ref={toggleBtnRef} className={btnClass} onClick={props.clicked}>
         Click Here
       </button>
     </div>
