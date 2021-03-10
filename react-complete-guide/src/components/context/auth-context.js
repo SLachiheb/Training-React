@@ -5,4 +5,6 @@ const authContext = React.createContext({
   login: () => {},
 });
 
+console.log(authContext);
+
 export default authContext;
