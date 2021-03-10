@@ -5,6 +5,7 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cokpit/Cockpit';
 import Example1 from '../components/ExampleReact/Example1';
 import withClass from '../components/hoc/withClass';
+import AuthContext from '../components/context/auth-context';
 
 class App extends React.Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class App extends React.Component {
     showPerson: false,
     showCockpit: true,
     changeCounter: 0,
-    authentication: false,
+    authenticated: false,
   };
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -66,7 +67,7 @@ class App extends React.Component {
   };
 
   loginHandler = () => {
-    this.setState({ authentication: true });
+    this.setState({ authenticated: true });
   };
 
   render() {
@@ -79,7 +80,7 @@ class App extends React.Component {
           persons={this.state.persons}
           clicked={this.deletePersonsHandler}
           changed={this.nameChangeHandler}
-          isAuthenticated={this.state.authentication}
+          isAuthenticated={this.state.authenticated}
         />
       );
     }
@@ -94,16 +95,23 @@ class App extends React.Component {
         >
           Remove Cockpit
         </button>
-        {this.state.showCockpit ? (
-          <Cockpit
-            title={this.props.appTitle}
-            showPersons={this.state.showPersons}
-            personsLength={this.state.persons.length}
-            clicked={this.togglePersonsHandler}
-            login={this.loginHandler}
-          />
-        ) : null}
-        {persons}
+        <AuthContext.Provider
+          value={{
+            authenticated: this.state.authenticated,
+            login: this.loginHandler,
+          }}
+        >
+          {this.state.showCockpit ? (
+            <Cockpit
+              title={this.props.appTitle}
+              showPersons={this.state.showPersons}
+              personsLength={this.state.persons.length}
+              clicked={this.togglePersonsHandler}
+              login={this.loginHandler}
+            />
+          ) : null}
+          {persons}
+        </AuthContext.Provider>
       </React.Fragment>
     );
   }
