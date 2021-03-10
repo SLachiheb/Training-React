@@ -23,6 +23,7 @@ class Persons extends PureComponent {
             age={person.age}
             click={() => this.props.clicked(index)}
             changed={e => this.props.changed(e, person.id)}
+            isAuth={this.props.isAuthenticated}
           />
         </ErrorBoundary>
       );
