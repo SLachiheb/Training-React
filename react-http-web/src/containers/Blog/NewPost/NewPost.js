@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 
-import './NewPost.css';
+import style from './NewPost.module.css';
 
 class NewPost extends Component {
   state = {
@@ -9,6 +9,10 @@ class NewPost extends Component {
     content: '',
     author: 'Max',
   };
+
+  componentDidMount() {
+    console.log(this.props);
+  }
 
   postDataHandler = async () => {
     const data = {
@@ -22,7 +26,7 @@ class NewPost extends Component {
 
   render() {
     return (
-      <div className="NewPost">
+      <div className={style.NewPost}>
         <h1>Add a Post</h1>
         <label>Title</label>
         <input
