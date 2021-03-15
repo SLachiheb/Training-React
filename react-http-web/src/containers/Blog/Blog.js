@@ -1,13 +1,19 @@
-import React, { Component } from 'react';
-import { Switch, Route, NavLink, Redirect } from 'react-router-dom';
+import React, { Component, Suspense } from 'react';
+import { Switch, Route, NavLink } from 'react-router-dom';
 
 import style from './Blog.module.css';
-import Posts from './Posts/Posts';
-import NewPost from './NewPost/NewPost';
+// import Posts from './Posts/Posts';
+// import asyncComponent from './../../hoc/asyncComponent';
+
+const AsyncNewPost = React.lazy(() => import('./NewPost/NewPost'));
+const AsyncPosts = React.lazy(() => import('./Posts/Posts'));
+// const AsyncNewPost = asyncComponent(() => {
+//   return import('./NewPost/NewPost');
+// });
 
 class Blog extends Component {
   state = {
-    auth: false,
+    auth: true,
   };
 
   render() {
@@ -42,14 +48,16 @@ class Blog extends Component {
             </ul>
           </nav>
         </header>
-        <Switch>
-          {this.state.auth ? (
-            <Route path="/new-post" component={NewPost} />
-          ) : null}
-          <Route path="/posts" component={Posts} />
-          <Route render={() => <h1> Not found </h1>} />
-          {/* <Redirect from="/" to="/posts" /> */}
-        </Switch>
+        <Suspense fallback={<div>Chargement...</div>}>
+          <Switch>
+            {this.state.auth ? (
+              <Route path="/new-post" component={AsyncNewPost} />
+            ) : null}
+            <Route path="/posts" component={AsyncPosts} />
+            <Route render={() => <h1> Not found </h1>} />
+            {/* <Redirect from="/" to="/posts" /> */}
+          </Switch>
+        </Suspense>
       </div>
     );
   }
