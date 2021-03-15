@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import './Blog.css';
+import Posts from './Posts/Posts';
 import { Switch, Route } from 'react-router-dom';
 
 class Blog extends Component {
@@ -26,13 +27,7 @@ class Blog extends Component {
               return <h1>New Post</h1>;
             }}
           />
-          <Route
-            path="/"
-            render={() => {
-              return <h1>Home</h1>;
-            }}
-            exact
-          />
+          <Route path="/" component={Posts} exact />
         </Switch>
       </div>
     );
