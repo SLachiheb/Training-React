@@ -12,7 +12,6 @@ class Posts extends React.Component {
   async componentDidMount() {
     try {
       const response = await axios.get('/posts');
-
       const posts = response.data.slice(0, 4);
       const updatePost = posts.map(post => {
         return { ...post, author: 'Author' + post.id };

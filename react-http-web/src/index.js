@@ -11,7 +11,6 @@ axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';
 
 axios.interceptors.request.use(
   request => {
-    console.log(request);
     // Edit request config
     return request;
   },
@@ -23,7 +22,6 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   response => {
-    console.log(response);
     // Edit request config
     return response;
   },
