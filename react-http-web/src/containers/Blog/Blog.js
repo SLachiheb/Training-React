@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './Blog.css';
 import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
+import FullPost from './FullPost/FullPost';
 import { Switch, Route, NavLink } from 'react-router-dom';
 
 class Blog extends Component {
@@ -13,7 +14,14 @@ class Blog extends Component {
           <nav>
             <ul>
               <li>
-                <NavLink to="/" exact>
+                <NavLink
+                  to="/"
+                  exact
+                  activeStyle={{
+                    textDecoration: 'underline',
+                    color: '#c5089c',
+                  }}
+                >
                   Home
                 </NavLink>
               </li>
@@ -32,8 +40,9 @@ class Blog extends Component {
           </nav>
         </header>
         <Switch>
-          <Route path="/new-post" component={NewPost} />
           <Route path="/" component={Posts} exact />
+          <Route path="/new-post" component={NewPost} />
+          <Route path="/:postId" component={FullPost} exact />
         </Switch>
       </div>
     );
