@@ -50,11 +50,3 @@ class Blog extends Component {
 }
 
 export default Blog;
-
-// {/* <section className="Posts">{posts}</section> */}
-// {/* <section>
-//   <FullPost id={this.state.selectedPostId} />
-// </section>
-// <section>
-//   <NewPost />
-// </section> */}
