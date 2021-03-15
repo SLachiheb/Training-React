@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 import './Blog.css';
 import Posts from './Posts/Posts';
-import { Switch, Route } from 'react-router-dom';
+import NewPost from './NewPost/NewPost';
+import { Switch, Route, Link } from 'react-router-dom';
 
 class Blog extends Component {
   render() {
@@ -12,21 +13,24 @@ class Blog extends Component {
           <nav>
             <ul>
               <li>
-                <a href="/">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a href="/new-post">New Post</a>
+                <Link
+                  to={{
+                    pathname: '/new-post',
+                    hash: '#submit',
+                    search: '?quick-submit=true',
+                  }}
+                >
+                  New Post
+                </Link>
               </li>
             </ul>
           </nav>
         </header>
         <Switch>
-          <Route
-            path="/new-post"
-            render={() => {
-              return <h1>New Post</h1>;
-            }}
-          />
+          <Route path="/new-post" component={NewPost} />
           <Route path="/" component={Posts} exact />
         </Switch>
       </div>
